@@ -121,6 +121,11 @@ int main()
     std::string input;
     unsigned int option = 0U, start = 0U, duration = 0U;
 
+    HWND console = GetConsoleWindow();
+    RECT rectangle;
+    GetWindowRect(console, &rectangle);
+    MoveWindow(console, rectangle.left, rectangle.top, 215 * 9, 54 * 20, TRUE);
+
     try
     {
         do
@@ -317,7 +322,7 @@ void printGraphics(std::vector<Task> taskList){
                     for (int j(0); j<sizeControl; ++j) {
                         gotoxy(x+63+prossesTime, y+j);
                         textColor(taskList[i].getId()+1,taskList[i].getId()+1);
-                        std::cout << "0";
+                        std::cout << " ";
                         textColor(DEFAULT_COLOR);
                     }
                 } else if(taskList[i].getStart() <= prossesTime){
